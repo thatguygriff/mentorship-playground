@@ -7,10 +7,14 @@ import (
 )
 
 func Start() {
+	// Create Job Manager
+	jobsManager := jobs.NewManager()
+
 	// Create HTTP server on port 8080
 	server := vk.New(vk.UseAppName("Playground"), vk.UseHTTPPort(8080), vk.UseLogger(vlog.Default()))
-	server.GET("/jobs/:jobID", jobs.Check)
-	server.POST("/jobs", jobs.Register)
+	server.GET("/jobs/:jobID", jobsManager.Check)
+	server.POST("/jobs", jobsManager.Register)
+	server.POST("/jobs/sync", jobsManager.RegisterSync)
 
 	server.Start()
 }
