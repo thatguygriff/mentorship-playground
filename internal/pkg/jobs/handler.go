@@ -9,8 +9,6 @@ import (
 	"github.com/suborbital/vektor/vk"
 )
 
-const defaultDelay = 60
-
 type Manager struct {
 	jobs   map[string]*Job
 	reactr *rt.Reactr
